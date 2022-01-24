@@ -51,6 +51,7 @@ public without sharing class cemInsertEmailTemplateQueueable implements Queueabl
             toInsertEmailTemplate.Subject = subject;                      
             update toInsertEmailTemplate;
         }
+        /*
         else{
             toInsertEmailTemplate.Name = 'Test Email Template 1';
             toInsertEmailTemplate.Body = emailBody;
@@ -62,6 +63,7 @@ public without sharing class cemInsertEmailTemplateQueueable implements Queueabl
             system.debug('toInsertEmailTemplate'+toInsertEmailTemplate.Subject);
             insert toInsertEmailTemplate;
         }
+        */
         insertedTemplateID=toInsertEmailTemplate.Id;
         system.debug('insertedTemplateid'+toInsertEmailTemplate.id);
         if(!Test.isRunningTest()){
