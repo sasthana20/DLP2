@@ -32,10 +32,18 @@ public without sharing class cemInsertEmailTemplateQueueable implements Queueabl
     }
     
     public void execute(QueueableContext context) {
-        List<Folder> folderName = [SELECT Id, Name, DeveloperName, Type FROM Folder where Type='Email' limit 1];
-        Id folderId=folderName[0].id;
-        String folName = folderName[0].Name;
-        String Type = folderName[0].Type;
+        List<Folder> folderName = [SELECT Id, Name, DeveloperName, Type FROM Folder where Type='Email' limit 1];        
+        if(folderName.size()>0){
+            try{
+                Id folderId=folderName[0].id;
+            }
+            catch(ListException e){
+                System.debug('List exception fired'); 
+            }
+            String folName = folderName[0].Name;
+            String Type = folderName[0].Type; 
+        }
+        
         system.debug('userId'+userId);
         
         EmailTemplate toInsertEmailTemplate = new EmailTemplate();
